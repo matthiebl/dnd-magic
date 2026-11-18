@@ -19,7 +19,7 @@ Without Firebase configuration, the app runs in **Local preview** mode and store
 4. Deploy [firestore.rules](firestore.rules) to the Firestore database.
 5. Add your GitHub Pages domain to Firebase Authentication's authorized domains.
 
-The app writes each grid to `grids/{shortId}`. The creator's anonymous UID owns the grid. A private grid can be read only by that UID. Enabling sharing allows any signed-in anonymous visitor with the URL to **view** it; only the owner can edit. The short ID has ten random characters. Anonymous identity is tied to a browser profile; clearing its browser data can remove the ability to edit grids created there.
+The app writes each grid to `grids/{shortId}`. The creator's anonymous UID owns the grid. A private grid can be read only by that UID. Enabling sharing allows any signed-in anonymous visitor with the URL to **view** it; only the owner can edit. New grid IDs use four uppercase letters and two digits. Anonymous identity is tied to a browser profile; clearing its browser data can remove the ability to edit grids created there.
 
 ## GitHub Pages
 

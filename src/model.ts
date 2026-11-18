@@ -66,6 +66,13 @@ export function newId(length = 10): string {
   return Array.from(bytes, byte => alphabet[byte % alphabet.length]).join('')
 }
 
+export function newGridId(): string {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  const digits = '0123456789'
+  const bytes = crypto.getRandomValues(new Uint8Array(6))
+  return Array.from(bytes, (byte, index) => index < 4 ? letters[byte % letters.length] : digits[byte % digits.length]).join('')
+}
+
 export function newCard(title: string): Card {
   return {
     id: newId(12), title, color: colors[Math.floor(Math.random() * colors.length)].value,
