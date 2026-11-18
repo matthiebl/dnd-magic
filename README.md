@@ -1,78 +1,43 @@
-# React + Tailwind Template
+# Gridly
 
-A minimal, production-ready starter built with React 19, TypeScript, Vite, Tailwind CSS v4, and React Router v7.
+A general-purpose drag-and-drop grid for arranging cards. Built with React, Tailwind CSS, Vite, Firebase Authentication, and Cloud Firestore.
 
-## Stack
-
-| Tool | Version | Purpose |
-|---|---|---|
-| [React](https://react.dev) | 19 | UI library |
-| [TypeScript](https://www.typescriptlang.org) | 6 | Type safety |
-| [Vite](https://vite.dev) | 8 | Dev server & bundler |
-| [Tailwind CSS](https://tailwindcss.com) | 4 | Utility-first styling |
-| [React Router](https://reactrouter.com) | 7 | Client-side routing |
-
-## Getting started
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-## What to update when starting a new app
+Without Firebase configuration, the app runs in **Local preview** mode and stores grids in this browser's local storage. This makes the interface usable before a Firebase project is connected; local grids do not sync or share across devices.
 
-### 1. App name & metadata
-- `index.html` — update `<title>` and `<link rel="icon">`
-- `package.json` — update `"name"` and `"version"`
-- `src/App.tsx` — update the logo/brand text in the header and footer copyright
+## Connect Firebase
 
-### 2. Navigation
-- `src/App.tsx` — add or remove `<NavLink>` entries in the header nav to match your routes
+1. Create a Firebase project and a Firestore database.
+2. Enable **Anonymous** sign-in in Firebase Authentication.
+3. Register a web app, then copy its configuration into `.env.local` using `.env.example` as a guide.
+4. Deploy [firestore.rules](firestore.rules) to the Firestore database.
+5. Add your GitHub Pages domain to Firebase Authentication's authorized domains.
 
-### 3. Routes & pages
-- `src/App.tsx` — add `<Route>` entries inside `<Routes>`
-- `src/pages/` — add a new `.tsx` file for each route; `Home.tsx`, `About.tsx`, and `NotFound.tsx` are included as starting points
+The app writes each grid to `grids/{shortId}`. The creator's anonymous UID owns the grid. A private grid can be read only by that UID. Enabling sharing allows any signed-in anonymous visitor with the URL to **view** it; only the owner can edit. The short ID has ten random characters. Anonymous identity is tied to a browser profile; clearing its browser data can remove the ability to edit grids created there.
 
-### 4. Colors & theme
-- Tailwind v4 has no config file — override the default theme in `src/index.css` using `@theme`:
+## GitHub Pages
 
-```css
-@import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
+The workflow in `.github/workflows/deploy.yml` builds on pushes to `master` and deploys `dist` to GitHub Pages. Set the repository's Pages source to **GitHub Actions**. Add these repository **variables** in GitHub Actions settings:
 
-@theme {
-  --color-brand: #6366f1;
-  --font-sans: "Inter", sans-serif;
-}
-```
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_APP_ID`
 
-## Dark mode
+Firebase's web configuration is public by design; Firestore rules enforce access. The workflow copies `index.html` to `404.html` so direct visits to a grid URL can load the React router on GitHub Pages.
 
-Dark mode is class-based (`dark` on `<html>`). The toggle in the header sets it; initial state is read from `prefers-color-scheme`. Use `dark:` variants in Tailwind as normal:
+## Controls
 
-```tsx
-<div className="bg-white dark:bg-gray-900">...</div>
-```
+- Create a card by entering its title and pressing Enter; its colour is chosen automatically.
+- Drag a card from the sidebar onto the grid, or use **Place** for a non-drag option.
+- Drag a placed card to move it. Drag its lower-right corner to resize it.
+- Focus a placed card and use arrow keys to move it. Hold Shift with arrow keys to resize.
+- Select a card to edit its details and numeric placement.
 
-## Project structure
-
-```
-src/
-  pages/          # One file per route
-    Home.tsx
-    About.tsx
-    NotFound.tsx
-  App.tsx         # Root layout: router, header, footer, dark mode state
-  main.tsx        # React entry point
-  index.css       # Tailwind import + @custom-variant dark + @theme overrides
-index.html        # HTML shell — update title and favicon here
-```
-
-## Scripts
-
-```bash
-npm run dev       # Start dev server
-npm run build     # Type-check + production build → dist/
-npm run preview   # Serve the production build locally
-npm run lint      # Run ESLint
-```
+Run `npm run build` to type-check and build, or `npm run lint` for static checks.
