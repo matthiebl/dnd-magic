@@ -21,6 +21,7 @@ export type Grid = {
   lineEvery: number
   rowLabels: string[]
   columnLabels: string[]
+  headerAlignment?: 'center' | 'border'
   shared: boolean
   cards: Card[]
   updatedAt: number
@@ -36,10 +37,10 @@ export const colors = [
 ]
 
 export const presets = {
-  blank: { name: 'Untitled grid', rows: 6, columns: 5, snap: 0.5, lineEvery: 1, rowLabels: [], columnLabels: [] },
-  day: { name: 'My day', rows: 8, columns: 1, snap: 0.25, lineEvery: 1, rowLabels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM'], columnLabels: [] },
-  week: { name: 'My week', rows: 4, columns: 7, snap: 1, lineEvery: 1, rowLabels: [], columnLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
-} satisfies Record<string, Pick<Grid, 'name' | 'rows' | 'columns' | 'snap' | 'lineEvery' | 'rowLabels' | 'columnLabels'>>
+  blank: { name: 'Untitled grid', rows: 6, columns: 5, snap: 0.5, lineEvery: 1, rowLabels: [], columnLabels: [], headerAlignment: 'center' },
+  day: { name: 'My day', rows: 8, columns: 1, snap: 0.25, lineEvery: 1, rowLabels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM'], columnLabels: [], headerAlignment: 'border' },
+  week: { name: 'My week', rows: 4, columns: 7, snap: 1, lineEvery: 1, rowLabels: [], columnLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], headerAlignment: 'center' },
+} satisfies Record<string, Pick<Grid, 'name' | 'rows' | 'columns' | 'snap' | 'lineEvery' | 'rowLabels' | 'columnLabels' | 'headerAlignment'>>
 
 export function parseSnap(value: string): number | null {
   const parts = value.trim().split('/')
