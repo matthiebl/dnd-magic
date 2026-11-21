@@ -1,6 +1,6 @@
 # Drag-and-drop grid app: initial requirements
 
-Build a responsive app for creating grids and arranging cards on them. Grids have no built-in meaning or calendar structure. Users choose any positive number of rows and columns, optional labels, visible cell lines, drag snap increment, and whether headers sit at cell centers or borders. Snapping is expressed in cell units: users can choose ¼, ½, 1, 2, or 3, or enter another positive value. Visible lines and snap points are separate settings. A grid can be renamed and reconfigured without losing its cards.
+Build a responsive app for creating grids and arranging cards on them. Grids have no built-in meaning or calendar structure. Users choose any positive number of rows and columns, optional labels, visible cell lines, drag snap increment, and separate switches to place row and column labels at cell centers or borders. Label positions may be blank; typing spaces is preserved until the field is formatted on blur. Snapping is expressed in cell units: users can choose ¼, ½, 1, 2, or 3, or enter another positive value. Visible lines and snap points are separate settings. A grid can be renamed and reconfigured without losing its cards.
 
 The starting screen defaults to a blank custom grid. Day and week are optional presets that prefill dimensions, labels, and snap settings. An eight-hour day could use eight hourly rows and quarter-row snapping. Users can change every preset value and build unrelated layouts such as project boards, seating plans, or inventories.
 
