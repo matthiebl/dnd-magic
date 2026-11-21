@@ -26,3 +26,7 @@
 .alignment-switch input:checked + .switch-track{background:#3d8060}
 .alignment-switch input:checked + .switch-track::after{transform:translateX(15px)}
 .alignment-switch input:focus-visible + .switch-track{outline:3px solid #75b896;outline-offset:2px}
+.form-grid .label-helper{grid-column:1/-1;margin:-4px 0 0}
+.canvas-layout.row-headers-on-borders,.mini-layout.row-headers-on-borders{padding-bottom:12px}
+.canvas-layout.column-headers-on-borders{padding-right:44px}
+.mini-layout.column-headers-on-borders{padding-right:32px}

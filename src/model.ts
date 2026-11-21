@@ -41,7 +41,7 @@ export const colors = [
 
 export const presets = {
   blank: { name: 'Untitled grid', rows: 6, columns: 5, snap: 0.5, lineEvery: 1, rowLabels: [], columnLabels: [], rowHeaderOnBorder: false, columnHeaderOnBorder: false },
-  day: { name: 'My day', rows: 8, columns: 1, snap: 0.25, lineEvery: 1, rowLabels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM'], columnLabels: [], rowHeaderOnBorder: true, columnHeaderOnBorder: false },
+  day: { name: 'My day', rows: 8, columns: 1, snap: 0.25, lineEvery: 1, rowLabels: ['9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM'], columnLabels: [], rowHeaderOnBorder: true, columnHeaderOnBorder: false },
   week: { name: 'My week', rows: 4, columns: 7, snap: 1, lineEvery: 1, rowLabels: [], columnLabels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], rowHeaderOnBorder: false, columnHeaderOnBorder: false },
 } satisfies Record<string, Pick<Grid, 'name' | 'rows' | 'columns' | 'snap' | 'lineEvery' | 'rowLabels' | 'columnLabels' | 'rowHeaderOnBorder' | 'columnHeaderOnBorder'>>
 
